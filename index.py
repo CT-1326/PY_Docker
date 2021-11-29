@@ -21,6 +21,8 @@ soupObject = BeautifulSoup(rq.content, 'html.parser', from_encoding="utf-8")
 # print the title of bs based on the request
 print(soupObject.select("#content > div.inner > div.hgroup > h1"))
 
+print('이것은 새로운 시작')
+
 # result should be
 # the title of the post in the url
 # like

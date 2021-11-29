@@ -1,23 +1,14 @@
-# Dockerfile
-# without an file extension
+FROM tensorflow/tensorflow:2.5.0
 
-# Use an official Python runtime as a parent image 
-FROM python:3.7-slim 
+WORKDIR /usr/src
 
-# Set the working directory to /app 
-WORKDIR /app 
+COPY ./requirements.txt .
 
-# Copy the current directory contents into the container at /app 
-COPY . /app  
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install -r requirements.txt
 
-# Install any needed packages specified in requirements.txt 
-RUN pip install --trusted-host pypi.python.org -r requirements.txt 
+COPY . .
 
-# Make port 80 available to the world outside this container 
-EXPOSE 80 
+CMD ["model.py"]
 
-# Define environment variable 
-ENV NAME World 
-
-# Run app.py when the container launches 
-CMD ["python", "index.py"]
+ENTRYPOINT ["python3"]
